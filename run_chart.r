@@ -2,6 +2,14 @@
 ## with mean 10 and standard deviation of 2
 # Given information (but calculate yourself
 # from https://openmv.net/info/rubber-colour)
+BinMean <- function (vec, every, na.rm = FALSE) {
+  n <- length(vec)
+  x <- .colMeans(vec, every, n %/% every, na.rm)
+  r <- n %% every
+  if (r) x <- c(x, mean.default(vec[(n - r + 1):n], na.rm = na.rm))
+  x
+  }
+
 xbar = c(245, 239, 239, 241, 241, 241, 238,
          238, 236, 248, 233, 236, 246, 253,
          227, 231, 237, 228, 239, 240)
@@ -9,6 +17,8 @@ xbar = c(245, 239, 239, 241, 241, 241, 238,
 # Number of measurements per subgroup
 N.sub = 5
 
+
+#BinMean(a, every = 10)
 # Average of the 20 standard deviations
 # of the 20 subgroups
 S = 9.28
