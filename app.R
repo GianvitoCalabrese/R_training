@@ -19,19 +19,20 @@ library(shinythemes)
   ui <- fluidPage(theme = shinytheme("cerulean"),
     navbarPage(
       # theme = "cerulean",  # <--- To use a theme, uncomment this
+      # My first app is the name of the web app, sidebarPanel 
       "My first app",
       tabPanel("Navbar 1",
                sidebarPanel(
                  tags$h3("Input:"),
-                 textInput("txt1", "Given Name:", ""),
-                 textInput("txt2", "Surname:", ""),
+                 textInput("txt1", "Given Name:", ""), #sent to the server
+                 textInput("txt2", "Surname:", ""), #sent to the server
                  
                ), # sidebarPanel
                mainPanel(
                             h1("Header 1"),
                             
                             h4("Output 1"),
-                            verbatimTextOutput("txtout"),
+                            verbatimTextOutput("txtout"), #generater from the server
 
                ) # mainPanel
                
