@@ -25,28 +25,20 @@ library(shinythemes)
                sidebarPanel(
                  tags$h3("Input:"),
                  textInput("txt1", "Given Name:", ""), #sent to the server
-                 textInput("txt2", "Surname:", ""), #sent to the server
-                 
+                 textInput("txt2", "Surname:", ""), #sent to the server                 
                ), # sidebarPanel
                mainPanel(
-                            h1("Header 1"),
-                            
+                            h1("Header 1"),                            
                             h4("Output 1"),
                             verbatimTextOutput("txtout"), #generater from the server
-
-               ) # mainPanel
-               
+               ) # mainPanel               
       ), # Navbar 1, tabPanel
       tabPanel("Navbar 2", "This panel is intentionally left blank"),
-      tabPanel("Navbar 3", "This panel is intentionally left blank")
-  
+      tabPanel("Navbar 3", "This panel is intentionally left blank") 
     ) # navbarPage
-  ) # fluidPage
-
-  
+  ) # fluidPage 
   # Define server function  
-  server <- function(input, output) {
-    
+  server <- function(input, output) {    
     output$txtout <- renderText({
       paste( input$txt1, input$txt2, sep = " " )
     })
@@ -55,3 +47,5 @@ library(shinythemes)
 
   # Create Shiny object
   shinyApp(ui = ui, server = server)
+
+ 
