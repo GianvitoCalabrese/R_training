@@ -1,11 +1,19 @@
 library(data.table)
 library(curl)
 library(dplyr)
-dat = fread("https://github.com/arunsrinivasan/satrdays-workshop/raw/master/flights_2014.csv")
+#dat = fread("https://github.com/arunsrinivasan/satrdays-workshop/raw/master/flights_2014.csv")
+#dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", header=TRUE,  sep = '\t')
 
+dat = read.table("C:/Users/tele1/Downloads/Bin_Map_leader.txt", header=TRUE,  sep = '\t', skipNul=TRUE)
+print(dat)
 #dat
+
+companies <- c("AAA","BBB","CCC")
+
+param <- menu(colnames(dat), graphics=TRUE, title="Choose parameter")
+
 i=0
-x = dat[,c('air_time')]
+x = dat[,c(param)]
 typeof(x)
 nums <- unlist(sapply(dat, is.numeric))
 vec <- names(dat[, ..nums])
