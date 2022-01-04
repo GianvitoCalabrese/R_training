@@ -1,1 +1,3 @@
-# R_training
+# R repo
+
+Experimental code to learn R code.
