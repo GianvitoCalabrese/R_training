@@ -13,7 +13,7 @@
 # Load R packages
 library(shiny)
 library(shinythemes)
-setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app")
+setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-app")
 
   # Define UI
   ui <- fluidPage(theme = shinytheme("cerulean"),
