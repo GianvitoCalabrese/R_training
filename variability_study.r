@@ -1,5 +1,7 @@
 # Create a sequence of numbers between -10 and 10 incrementing by 0.1.
 
+runif(10, min = -1, max = 1)
+
 y<-rnorm(100, mean = 2.5, sd = 0.5) -> data
 hist(data)
 MASS::fitdistr(data, "normal")
