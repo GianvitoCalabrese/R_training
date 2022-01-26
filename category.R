@@ -6,10 +6,10 @@ dataFrame <- beaver1
 fltr<- filter(dataFrame, dataFrame$temp <quantile(dataFrame$temp, 0.25))
 
 
-fltr <- fltr %>% mutate(GR = dplyr::case_when(fltr$time <= mean(fltr$time, na.rm=FALSE) ~ 'A'
-          ,fltr$time <= mean(fltr$time, na.rm=FALSE) + sd(fltr$time) ~ 'B'
-          ,fltr$time <= mean(fltr$time, na.rm=FALSE) + 2*sd(fltr$time)  ~ 'C'
-          ,fltr$time <= mean(fltr$time, na.rm=FALSE) + 3*sd(fltr$time) ~ 'D'
+fltr <- fltr %>% mutate(GR = case_when(fltr$'time' <= mean(fltr$time, na.rm=TRUE) ~ 'A'
+          ,fltr$time <= mean(fltr$time, na.rm=TRUE) + sd(fltr$time, , na.rm=TRUE) ~ 'B'
+          ,fltr$time <= mean(fltr$time, na.rm=TRUE) + 2*sd(fltr$time, , na.rm=TRUE)  ~ 'C'
+          ,fltr$time <= mean(fltr$time, na.rm=TRUE) + 3*sd(fltr$time,, na.rm=TRUE) ~ 'D'
           ,TRUE ~ 'F'))
 
-print(fltr)
+print(mean(fltr$'time', na.rm=FALSE))
