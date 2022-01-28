@@ -12,11 +12,13 @@ param_set <- function(x) {        # Create user-defined function
   out
 }
 
-
+while(TRUE){
 param<- colnames(dat)[param_set(dat)]
 print(param)
-
-
+if(is.numeric(dat[,c(param)]) ){
+  break
+}
+}
 i=0
 x = dat[,c(param)]
 typeof(x)
@@ -24,15 +26,8 @@ nums <- unlist(sapply(dat, is.numeric))
 vec <- names(dat[, nums])
 
 
-for(i in vec) {
-print(i)
-}
-
-#a <- air_time
-
 output <- data.table(Param = factor(), Pearson = numeric())
 for(i in vec) {
-print(typeof(i))
 m <- lm(formula = get(i) ~ x, data=dat)
 s <- summary(m)
 new.row <- data.frame(Param = i ,Pearson = s$r.squared )
@@ -40,5 +35,5 @@ output <- rbind(output, new.row)
 }
 
 #warnings()
-output
+print(output)
 
