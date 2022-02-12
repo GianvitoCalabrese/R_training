@@ -2,26 +2,31 @@
 ## with mean 10 and standard deviation of 2
 # Given information (but calculate yourself
 # from https://openmv.net/info/rubber-colour)
-BinMean <- function (vec, every, na.rm = FALSE) {
-  n <- length(vec)
-  x <- .apply(vec, 1, n %/% every, na.rm)
+# The random numbers are the same, and they would continue to be the same no matter how far out in the sequence we went.
+# Tip. Use the set.seed function when running simulations to ensure all results, figures, etc are reproducible.
+#
+
+BinMean <- function (n, every, na.rm = FALSE) {
+  #set.seed(n) 
+  dist <- rnorm(n)
+  x <- .colMeans(dist, every, n %/% every, na.rm)
   r <- n %% every
-  if (r) x <- c(x, mean.default(vec[(n - r + 1):n], na.rm = na.rm))
+  if (r) x <- c(x, mean.default(dist[(n - r + 1):n], na.rm = na.rm))
   x
   }
 
-xbar = c(245, 239, 239, 241, 241, 241, 238,
-         238, 236, 248, 233, 236, 246, 253,
-         227, 231, 237, 228, 239, 240)
-
+# Number of points
+j <- 103
 # Number of measurements per subgroup
 N.sub = 5
+
+xbar <- BinMean(j, every = j%%N.sub)
 
 
 #BinMean(a, every = 10)
 # Average of the 20 standard deviations
 # of the 20 subgroups
-S = 9.28
+S = sd(xbar)
 
 # xdb = x double bar = overall mean =
 #       mean of the means
@@ -50,7 +55,7 @@ xdb = mean(xbar, na.rm=TRUE)
 # 'S' will change also. If you download the
 # raw data (link above), you can prove
 # that the new 'S' will be:
-S = 9.68
+
 
 # The 'an' and 'N.sub' will not change.
 
@@ -62,7 +67,7 @@ paste0('Control limits: [', round(LCL, 0),
 plot(x = 1,
      type = "n",
      xlim = c(0, length(xbar)), 
-     ylim = c(200, max(xbar, na.rm = TRUE)),
+     ylim = c(min(xbar, na.rm = TRUE), max(xbar, na.rm = TRUE)),
      pch = 16,
      xlab = "N", 
      ylab = "Values",
