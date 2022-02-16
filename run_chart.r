@@ -6,14 +6,7 @@
 # Tip. Use the set.seed function when running simulations to ensure all results, figures, etc are reproducible.
 #
 
-BinMean <- function (n, every, na.rm = FALSE) {
-  #set.seed(n) 
-  dist <- rnorm(n)
-  x <- .colMeans(dist, every, n %/% every, na.rm)
-  r <- n %% every
-  if (r) x <- c(x, mean.default(dist[(n - r + 1):n], na.rm = na.rm))
-  x
-  }
+source("package.R")
 
 # Number of points
 j <- 103
