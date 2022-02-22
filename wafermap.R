@@ -3,9 +3,19 @@ madeUp=read.table("https://raw.githubusercontent.com/holtzy/R-graph-gallery/mast
 dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", header=TRUE,  sep = '\t', skipNul=TRUE)
 # load libraries
 library(tidyverse)
-wfqty <- nrow(unique(dat$wafer))
+wfqty <- length(unique(dat$wafer))
+print(wfqty)
+
+theData <- madeUp %>% 
+ group_by(X.Axis, Y.Axis, Group) %>% 
+ dplyr::summarize(statistic=mean(randVals/wfqty, na.rm = TRUE))
+
+theData <- madeUp %>% 
+ group_by(dat$die_x, dat$die_y, dat$Bin_Name) %>% 
+ dplyr::summarize(statistic=mean(randVals/wfqty, na.rm = TRUE))
+
 # Prepare data
-# X.Axis = diex, X.Axis = diey, Group can be Lot, wafers.. it's the trellis, randVals should be bin/wfsqty
+# X.Axis = diex, X.Axis = diey, Group can be Lot, wafers.. it's the trellis, randVals should be bin/ewfsqty
 theData <- madeUp %>% 
  group_by(X.Axis, Y.Axis, Group) %>% 
  dplyr::summarize(statistic=mean(randVals, na.rm = TRUE))
