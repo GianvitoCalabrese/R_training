@@ -19,11 +19,11 @@ theData <- dat %>%
 
  
 # plot
-ggplot(theData, aes(dat$diex, dat$diey)) +
+ggplot(theData, aes(diex, diey)) +
     
     coord_cartesian(xlim = c(min(dat$diex),max(dat$diex)), ylim = c(min(dat$diey),max(dat$diey))) +
-    scale_x_continuous(breaks = seq(0,20)) +
-    scale_y_continuous(breaks = seq(0,20))+
+    scale_x_continuous(breaks = seq(min(dat$diex),max(dat$diex))) +
+    scale_y_continuous(breaks = seq(min(dat$diey),max(dat$diey)))+
     
     geom_tile(aes(fill=statistic))+
     guides(fill=guide_legend(title='Legend'))+
