@@ -1,0 +1,3 @@
+ui <- fluidPage(
+	mypackage::blueBgScript()
+)
