@@ -15,3 +15,10 @@ BinMean <- function (n, every, na.rm = FALSE) {
   x<-x0+t*mu+z
   return(x)
   }
+
+  param_set <- function(x) {        # Create user-defined function
+ 
+  out <- menu(colnames(x), graphics=TRUE, title="Choose parameter")
+ 
+  out
+}
