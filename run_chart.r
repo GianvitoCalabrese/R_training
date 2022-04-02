@@ -9,11 +9,11 @@
 source("package.R")
 
 # Number of points
-j <- 103
+j <- 10
 # Number of measurements per subgroup
-N.sub = 5
+N.sub = 9
 
-xbar <- BinMean(j, every = j%%N.sub)
+xbar <- BinMean(j, every = N.sub)
 
 
 #BinMean(a, every = 10)

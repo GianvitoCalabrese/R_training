@@ -62,11 +62,15 @@ setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-a
       handlerExpr = {
         j<-j()
         N.sub <- N.sub()
-        print(typeof(j))
-        print(typeof(N.sub))
-        print(j%%N.sub)
         xbar <- BinMean(j, every = j%%N.sub)
         S = sd(xbar)
+        xdb = mean(xbar)
+        num.an = sqrt(2) * gamma(N.sub/2)
+        den.an = sqrt(N.sub-1) * gamma((N.sub-1)/2)
+        an = num.an / den.an
+        LCL = xdb - (3 * S/(an * sqrt(N.sub)))
+        UCL = xdb + (3 * S/(an * sqrt(N.sub)))
+        paste0('Control limits: [', round(LCL, 2),'; ', round(UCL,2), ']')
       }
     )
     

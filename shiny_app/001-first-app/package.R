@@ -1,11 +1,16 @@
 BinMean <- function (n, every, na.rm = FALSE) {
-  #set.seed(n) 
-  dist <- rnorm(n)
-  x <- .colMeans(dist, every, n %/% every, na.rm)
-  r <- n %% every
-  if (r) x <- c(x, mean.default(dist[(n - r + 1):n], na.rm = na.rm))
-  x
-  }
+       var <- n- n%%every
+       dist <- rnorm(var)
+       i<-0
+       x<-c()
+       while(i < var/every){
+       lim1 <- 1+i*every
+       lim2 <- every*(i+1)
+       i <- i+1
+       x[i] <- c(mean(dist[lim1:lim2], na.rm = FALSE))
+       }
+       x
+       }
 
 
   RW <- function(N, x0, mu, variance) {
