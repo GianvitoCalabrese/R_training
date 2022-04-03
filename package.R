@@ -12,6 +12,8 @@ BinMean <- function (n, every, na.rm = FALSE) {
        x
        }
 
+# Random Walk
+ 
 
   RW <- function(N, x0, mu, variance) {
   z<-cumsum(rnorm(n=N, mean=0, 

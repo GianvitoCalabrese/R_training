@@ -33,7 +33,10 @@ setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-a
                ), # sidebarPanel
                mainPanel(
                             h1("Header 1"),
-                            
+                                mainPanel(
+                                  # Output: runchart ----
+                                plotOutput(outputId = "distPlot")
+                                      ),
                             h4("Output 1"),
                             verbatimTextOutput("txtout1"),
                             h4("Output 2"),
@@ -71,6 +74,19 @@ setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-a
         LCL = xdb - (3 * S/(an * sqrt(N.sub)))
         UCL = xdb + (3 * S/(an * sqrt(N.sub)))
         paste0('Control limits: [', round(LCL, 2),'; ', round(UCL,2), ']')
+        output$distPlot <- renderPlot({
+            plot(x = 1,
+             type = "n",
+             xlim = c(0, length(xbar)), 
+             ylim = c(min(xbar, na.rm = TRUE), max(xbar, na.rm = TRUE)),
+             pch = 16,
+             xlab = "N", 
+             ylab = "Values",
+             main = "Run Chart")
+
+             points(x= 1:length(xbar), y = xbar, pch=16, col=ifelse(xbar>230, "red", "black"))
+             lines(x = 1:length(xbar) , y = xbar, type = "l")
+        })
       }
     )
     

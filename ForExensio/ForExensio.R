@@ -1,17 +1,20 @@
 #GENERAL USED NAMES & TYPE DEFINITION
 #datin[#]: TABLE (INPUT)
 #datout[#]: TABLE (OUTPUT)
+#colin[#]: COL (INPUT)
+#colout[#]: COL (OUTPUT)
 #varin[#]: PROPERTY (INPUT)
 #varout[#]: PROPERTY (OUTPUT)
 
 #Script developed in order to obtain the colnames of a table and the realize 
-#Needed a 
+#Input Parameters: datin1
+#Output Parameters: datout2
 
 columns<-colnames(datin1)
 datout2<- unique(datin1[grep("Bin",columns)]) %>% drop_na()
 
 
-#Script developed in order to count the diff unique entries in a coulmn certain column 
+#Script developed in order to count the diff unique entries in a certain column 
 #Input Parameters: datin1
 #Output Parameters: varout1
  
@@ -21,7 +24,7 @@ varout1 <- length(unique(datin1[,varin1]))
 #Input Parameters: dat
 #Output Parameters: dat
 
-for(i in 1:nrow(datin)){ 
+for(i in 1:nrow(datin1)){ 
 	if grepl('^[A-Za-z]+$', str_replace(dat[i,"Data"], c(".", "-"), ""), perl = T){
 			x <- dat[i,"Parameter"]
 		}
