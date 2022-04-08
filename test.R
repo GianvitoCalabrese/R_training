@@ -1,22 +1,11 @@
-source("package.R")
+#library(factoextra)
 
-# Number of points
-n <- 10
-# Number of measurements per subgroup
-every = 15
+data("USArrests")      # Loading the data set
+df <- na.omit(scale(USArrests)) # Scaling the data
 
-var <- n- n%%every
-dist <- rnorm(var)
-i<-0
-x<-c()
-while(i < var/every){
-lim1 <- 1+i*every
-lim2 <- every*(i+1)
-print(lim1)
-print(lim2)
-i <- i+1
-x[i] <- c(mean(dist[lim1:lim2], na.rm = FALSE))
-}
+# View the firt 3 rows of the data
+head(df, n = 3)
 
-print(var)
-print(x)
+set.seed(123)
+km.res <- kmeans(df, 4, nstart = 25)
+print(km.res)
