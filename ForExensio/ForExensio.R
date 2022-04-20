@@ -78,7 +78,7 @@ path <- var1
 save.image(paste( path,"mytable.RData"))
 
 
-#Script developed in order  
+#Script developed in order . Taken a certain field  
 #Input Parameters: dat
 #Output Parameters: dat
 
@@ -86,12 +86,12 @@ wafer <- datin1[,field]
 #die#
 coordnumtab<-aggregate(wafer,  by=list("wafer"=wafer), FUN=length)
 
-#wf aggregation with bin count - not working correctly just a for is needed
+#wf aggregation with bin count - not working correctly just a for is needed to run through the biname also
 wfagg<-aggregate(wafer, by=list("wafer"=wafer, "biname"=biname), FUN=length)
-wf<- match(wfagg$wafer[1],coordnumtab$wafer)
+#wf<- match(wfagg$wafer[1],coordnumtab$wafer)
 j=1
 while(j < 1+ length(wfagg$wafer)){
-wfagg$x[j] <- wfagg$x[j]*100/(coordnumtab[match(wfagg$wafer[j],coordnumtab$wafer), 2])
+wfagg$x[j] <- wfagg$biname[j]*100/(coordnumtab[match(wfagg$wafer[j],coordnumtab$wafer), 2])
 j=j+1
 }
 
@@ -129,3 +129,8 @@ i=i+1
 colnames(bin_table) <- test_array
 
 
+
+
+#stack the third and fourth columns
+stacked<-cbind(data[1:2], stack(data[3:4]))
+View(stacked)
