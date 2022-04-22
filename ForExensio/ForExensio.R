@@ -134,3 +134,27 @@ colnames(bin_table) <- test_array
 #stack the third and fourth columns
 stacked<-cbind(data[1:2], stack(data[3:4]))
 View(stacked)
+
+
+#
+
+StackDF <- function(df, indxCols, stackCols, stackParName="Parameter", stackValName="Value") {
+   dfStack <- NULL
+   if(length(stackCols) == 0) {
+      return(df)
+   }
+   for(i in 1:length(stackCols)) {
+      dfTmp <- df[,c(indxCols,stackCols[i])]
+      names(dfTmp)[ncol(dfTmp)] <- stackValName
+      dfTmp[,stackParName] <- rep(stackCols[i],nrow(dfTmp))
+      if(is.null(dfStack)) {
+         dfStack <- dfTmp
+      } else {
+         dfStack <- rbind(dfStack, dfTmp)
+      }
+   }
+   return(dfStack)
+
+   #
+
+
