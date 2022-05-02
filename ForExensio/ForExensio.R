@@ -131,12 +131,12 @@ colnames(bin_table) <- test_array
 
 
 
-#stack the third and fourth columns
+#stack the third and fourth columns -> this in exensio does not work -> it is a bug
 stacked<-cbind(data[1:2], stack(data[3:4]))
 View(stacked)
 
 
-#
+#stacked table
 
 StackDF <- function(df, indxCols, stackCols, stackParName="Parameter", stackValName="Value") {
    dfStack <- NULL
