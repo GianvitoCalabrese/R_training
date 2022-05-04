@@ -157,4 +157,5 @@ StackDF <- function(df, indxCols, stackCols, stackParName="Parameter", stackValN
 
    #
 
-
+#stacked table
+<TERR_Integer("set.seed(42); output=kmeans(na.omit(data.frame(input1, input2)), ${Clusters})$cluster", ${Axis.X.Expression}, ${Axis.Y.Expression}) as [Cluster]>
