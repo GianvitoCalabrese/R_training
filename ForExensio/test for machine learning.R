@@ -24,16 +24,12 @@ df = left_join(grp_df_2,resp[, c("Wafer","yield....")],by = c("wafer" = "Wafer")
 
 
 
-#
-X = df[, -which(names(df) == "yield...."]   # data (excluding the response variable)
-#
-y = df[, c("yield....")]    # the response variable
-#
-dat = center_scale(X, mean_center = T, sd_scale = T)  # centering and scaling the data
 
-View(dat)
-#gmm = GMM(dat, 2, dist_mode = "maha_dist", seed_mode = "random_subset", km_iter = 10,
-#          em_iter = 10, verbose = F)          
-#
+X = df[, -which(names(df) == "yield...." & names(df) == "wafer")]   # data (excluding the response variable)
+y = df[, c("yield....")]    # the response variable
+
+dat = center_scale(X, mean_center = T, sd_scale = T)  # centering and scaling the data
+gmm = GMM(dat, 2, dist_mode = "maha_dist", seed_mode = "random_subset", km_iter = 10, em_iter = 10, verbose = F)          
+print(gmm)
 ## predict centroids, covariance matrix and weights
 #pr = predict(gmm, newdata = dat)
