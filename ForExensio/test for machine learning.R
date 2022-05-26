@@ -29,6 +29,9 @@ X = df[, -which(names(df) == "yield...." & names(df) == "wafer")]   # data (excl
 y = df[, c("yield....")]    # the response variable
 
 dat = center_scale(X, mean_center = T, sd_scale = T)  # centering and scaling the data
+
+dime(dat)
+
 gmm = GMM(dat, 2, dist_mode = "maha_dist", seed_mode = "random_subset", km_iter = 10, em_iter = 10, verbose = F)          
 print(gmm)
 ## predict centroids, covariance matrix and weights

@@ -1,6 +1,6 @@
 # Loading data
 data(iris)
-   
+
 # Structure 
 str(iris)
 
