@@ -13,7 +13,7 @@
 # Load R packages
 library(shiny)
 library(shinythemes)
-source("package.R")
+source("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/package.R")
 setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-app")
 #setwd("C:/Users/zbmbcf/Documents/GitHub/R_training/shiny_app/001-first-app")
 
@@ -54,7 +54,6 @@ setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-a
   
   # Define server function  
   server <- function(input, output) {
-    
     output$txtout1 <- renderText(input$txt1)
     output$txtout2 <- renderText(input$txt2)
     j <- reactive({j <- input$txt1})
@@ -65,7 +64,19 @@ setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-a
       handlerExpr = {
         j<-j()
         N.sub <- N.sub()
-        xbar <- BinMean(j, every = j%%N.sub)
+        
+        output$normalError <- renderText({
+        if (j > N.sub) {
+          print("ok")
+        } else {
+          stop(
+          print('is not a number between 1 and 10')
+        )
+        }
+        })
+
+        
+        xbar <- BinMean(n=j, every = j%%N.sub)
         S = sd(xbar)
         xdb = mean(xbar)
         num.an = sqrt(2) * gamma(N.sub/2)

@@ -7,7 +7,7 @@
 # Modified from https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/
 
 library(shiny)
-data(airquality)
+#data(airquality)
 setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/002-histogram")
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
@@ -43,10 +43,24 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
   
-
+  runif(10, min = -1, max = 1)
+  vec_m <- 0
+  vec_s <- 0
+  for(i in 1:500){
+  data <-rnorm(i*100, mean = 2.5, sd = 1)
+  #hist(data)
+  vec_m[i] <- MASS::fitdistr(data, "normal")[["estimate"]][["mean"]]
+  vec_s[i] <- MASS::fitdistr(data, "normal")[["estimate"]][["sd"]]
+  # Choose the mean as 2.5 and standard deviation as 0.5.
+  #y <- dnorm(x, mean = 2.5, sd = 0.5)
+  }
+  plot(vec_s)
+  #print(y[["estimate"]][["mean"]])
+  # Give the chart file a name.
+  png(file = "dnorm.png")
   output$distPlot <- renderPlot({
     
-    x    <- airquality$Ozone
+    x    <- vec_s #airquality$Ozone
     x    <- na.omit(x)
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
@@ -60,3 +74,7 @@ server <- function(input, output) {
 
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
+
+
+
+
