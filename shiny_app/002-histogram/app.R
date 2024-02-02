@@ -8,7 +8,6 @@
 
 library(shiny)
 #data(airquality)
-setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/002-histogram")
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
   
