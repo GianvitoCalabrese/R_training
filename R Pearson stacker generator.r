@@ -3,6 +3,9 @@ library(curl)
 library(dplyr)
 
 #options(encoding = "UTF-8-BOM")
+file_location <- file.choose()
+path_user <- dirname(file_location)
+print(path_user)
 #dat = fread("https://github.com/arunsrinivasan/satrdays-workshop/raw/master/flights_2014.csv")
 dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
 source("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/package.R")
@@ -25,10 +28,10 @@ vec <- names(dat[, nums])
 
 output <- data.table(Param = factor(), Pearson = numeric())
 for(i in vec) {
-m <- lm(formula = get(i) ~ x, data=dat)
-s <- summary(m)
-new.row <- data.frame(Param = i ,Pearson = s$r.squared )
-output <- rbind(output, new.row)
+  m <- lm(formula = get(i) ~ x, data=dat)
+  s <- summary(m)
+  new.row <- data.frame(Param = i ,Pearson = s$r.squared )
+  output <- rbind(output, new.row)
 }
 
 #warnings()
