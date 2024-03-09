@@ -63,4 +63,18 @@ edge <- function(dat){
   
   dat
 }
+
+setClass("random_walk", contains= "numeric", representation(k= "numeric") )
+setGeneric("generate", function(x, N, x0, mu, variance) standardGeneric("generate"))
+setMethod("generate" , "random_walk" ,function(x, N, x0, mu, variance) {
+  z<-cumsum(rnorm(n=N, mean=0, 
+                  sd=sqrt(variance)))
+  t<-1:N
+  x@k<-x0+t*mu+z
+  x
+}) 
+
+john <- new("random_walk", k = NA_real_)
+slot(john, "k")
+generate(john, 50,0,3,0.2)
   

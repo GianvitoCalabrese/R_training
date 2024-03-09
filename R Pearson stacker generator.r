@@ -2,13 +2,11 @@ library(data.table)
 library(curl)
 library(dplyr)
 
-#options(encoding = "UTF-8-BOM")
 file_location <- file.choose()
 path_user <- dirname(file_location)
 print(path_user)
-#dat = fread("https://github.com/arunsrinivasan/satrdays-workshop/raw/master/flights_2014.csv")
-dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
-source("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/package.R")
+dat = read.csv(file_location, fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
+source("C:/Users/gcalabre/GitHub/R_training/package.R")
 
 print(colnames(dat))
 
