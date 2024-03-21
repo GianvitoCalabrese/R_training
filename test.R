@@ -1,5 +1,8 @@
 #library(factoextra)
-dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", header=TRUE,  sep = '\t', skipNul=TRUE)
+file_location <- file.choose()
+print(path_user)
+#dat = read.csv(file_location, fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
+dat = read.csv(file_location, header=TRUE,  sep = '\t', skipNul=TRUE)
 data("USArrests")      # Loading the data set
 source("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/package.R")
 
