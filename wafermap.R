@@ -1,8 +1,13 @@
-# load data
-#madeUp=read.table("https://raw.githubusercontent.com/holtzy/R-graph-gallery/master/DATA/madeUp.csv", sep=",", header=T)
-dat = read.table("https://www.dropbox.com/s/w85p6egja4y3jsa/Bin%20Map%20-%20leader.txt?dl=1", header=TRUE,  sep = '\t', skipNul=TRUE)
 # load libraries
 library(tidyverse)
+
+# load data
+file_location <- file.choose()
+#dat = read.csv(file_location, fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
+dat = read.csv(file_location, fileEncoding="UTF-16LE", header=TRUE,  sep = '\t', skipNul=TRUE)
+
+
+
 wfqty <- length(unique(dat$wafer))
 print(wfqty)
 # Prepare data
@@ -19,7 +24,7 @@ theData <- dat %>%
 
  
 # plot
-ggplot(theData, aes(diex, diey)) +
+p<-ggplot(theData, aes(diex, diey)) +
     
     coord_cartesian(xlim = c(min(dat$diex),max(dat$diex)), ylim = c(min(dat$diey),max(dat$diey))) +
     scale_x_continuous(breaks = seq(min(dat$diex),max(dat$diex))) +
@@ -37,3 +42,5 @@ ggplot(theData, aes(diex, diey)) +
     ggtitle('Wafer Map')+
     facet_wrap(~BinName)+
     scale_fill_gradientn(colors = rainbow(100))
+
+print(p)

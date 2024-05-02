@@ -13,8 +13,8 @@
 # Load R packages
 library(shiny)
 library(shinythemes)
-source("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/package.R")
-setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-app")
+source("C:/Users/gcalabre/GitHub/R_training/package.R")
+# setwd("C:/Users/tele1/OneDrive/Documenti/GitHub/R_training/shiny_app/001-first-app")
 #setwd("C:/Users/zbmbcf/Documents/GitHub/R_training/shiny_app/001-first-app")
 
   # Define UI
